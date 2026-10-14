@@ -1,0 +1,12 @@
+14 October 2026 – verified in restricted local build environment:
+
+python -m pytest -q
+7 passed
+
+python -m tests.make_smoke_data
+Synthetic-only fixtures generated for smoke check.
+
+python -m src.cli train --parquet data/processed/SMOKE_ONLY_NOT_BACKBLAZE.pkl
+Completed the baseline and all three LightGBM training branches, produced comparison files.
+
+Neither the real Backblaze archive nor actual AWS deployment was accessed. No synthetic model performance is represented as actual scientific results.

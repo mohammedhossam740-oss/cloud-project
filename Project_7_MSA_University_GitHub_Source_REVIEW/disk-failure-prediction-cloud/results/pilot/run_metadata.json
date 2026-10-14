@@ -1,0 +1,29 @@
+{
+  "train_date_range": [
+    "2023-01-01",
+    "2023-02-13"
+  ],
+  "validation_date_range": [
+    "2023-02-21",
+    "2023-03-03"
+  ],
+  "test_date_range": [
+    "2023-03-11",
+    "2023-03-22"
+  ],
+  "pre_cap_train_rows": 70367,
+  "train_cap": 60000,
+  "train_label_balance": {
+    "0": 59477,
+    "1": 523
+  },
+  "validation_label_balance": {
+    "0": 16923,
+    "1": 112
+  },
+  "test_label_balance": {
+    "0": 13801,
+    "1": 145
+  },
+  "mode_holdout": "none"
+}

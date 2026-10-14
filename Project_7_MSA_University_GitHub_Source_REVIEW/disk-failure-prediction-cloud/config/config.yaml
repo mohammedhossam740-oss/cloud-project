@@ -1,0 +1,14 @@
+# 2023 Q1 has daily observations across 90 calendar days. Confirm failure counts after ingest.
+dataset_url: https://f001.backblazeb2.com/file/Backblaze-Hard-Drive-Data/data_Q1_2023.zip
+archive_name: data_Q1_2023.zip
+# Start with two HDD models with similar Seagate raw SMART semantics.
+# Extend after checking positive counts and RAM use.
+models:
+  - ST12000NM0008
+  - ST14000NM001G
+horizon_days: 7
+train_fraction: 0.58
+val_fraction: 0.21
+max_training_rows: 350000
+random_seed: 42
+recall_target: 0.80

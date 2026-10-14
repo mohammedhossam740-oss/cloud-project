@@ -1,0 +1,180 @@
+{
+  "dataset": "data/raw/data_Q2_2023.zip",
+  "selected_models": [
+    "ST12000NM0008",
+    "ST14000NM001G"
+  ],
+  "source_days": 91,
+  "prediction_date_range": [
+    "2023-04-01",
+    "2023-06-23"
+  ],
+  "eligible_drive_days": 2327260,
+  "positive_drive_days": 1317,
+  "natural_prevalence": 0.0005659015322740047,
+  "evaluation": "Independent Q2 test, all eligible selected-model drives; no failure-based sampling",
+  "thresholds": "All thresholds fixed from Q1 validation; no Q2 threshold tuning",
+  "feature_caveat": "observed_days resets at Q2 start; no pre-quarter historical SMART records",
+  "models": {
+    "logistic_baseline": {
+      "observations": 2327260,
+      "positives": 1317,
+      "prevalence": 0.0005659015322740047,
+      "precision": 0.0008756923442596803,
+      "recall": 0.85041761579347,
+      "f1": 0.0017495831071502493,
+      "average_precision": 0.043301065125826474,
+      "roc_auc": 0.8360503361892624,
+      "false_positive_rate": 0.5493978141338803,
+      "false_alarms_per_1000_eligible_drive_days": 549.086909069034,
+      "threshold_reused_from_q1_validation": 0.36204691436873926,
+      "tp": 1120,
+      "fp": 1277868,
+      "tn": 1048075,
+      "fn": 197,
+      "unique_failing_drives_with_eligible_positives": 208,
+      "unique_failing_drives_detected": 185,
+      "drive_event_recall": 0.8894230769230769,
+      "by_drive_model": {
+        "ST12000NM0008": {
+          "tp": 909,
+          "fp": 1269651,
+          "tn": 217383,
+          "fn": 59,
+          "precision": 0.0007154325651681149,
+          "recall": 0.9390495867768595,
+          "false_positive_rate": 0.8538143714266117
+        },
+        "ST14000NM001G": {
+          "tp": 211,
+          "fp": 8217,
+          "tn": 830692,
+          "fn": 138,
+          "precision": 0.02503559563360228,
+          "recall": 0.6045845272206304,
+          "false_positive_rate": 0.009794864520466464
+        }
+      }
+    },
+    "lightgbm_static_weighted": {
+      "observations": 2327260,
+      "positives": 1317,
+      "prevalence": 0.0005659015322740047,
+      "precision": 0.0013546902755206167,
+      "recall": 0.8709187547456341,
+      "f1": 0.0027051727289343812,
+      "average_precision": 0.028152566345111492,
+      "roc_auc": 0.8616988226808889,
+      "false_positive_rate": 0.36352610532588286,
+      "false_alarms_per_1000_eligible_drive_days": 363.32038534585735,
+      "threshold_reused_from_q1_validation": 0.0015613943962492298,
+      "tp": 1147,
+      "fp": 845541,
+      "tn": 1480402,
+      "fn": 170,
+      "unique_failing_drives_with_eligible_positives": 208,
+      "unique_failing_drives_detected": 195,
+      "drive_event_recall": 0.9375,
+      "by_drive_model": {
+        "ST12000NM0008": {
+          "tp": 843,
+          "fp": 803097,
+          "tn": 683937,
+          "fn": 125,
+          "precision": 0.001048585715351892,
+          "recall": 0.8708677685950413,
+          "false_positive_rate": 0.5400663333857867
+        },
+        "ST14000NM001G": {
+          "tp": 304,
+          "fp": 42444,
+          "tn": 796465,
+          "fn": 45,
+          "precision": 0.0071114438102367365,
+          "recall": 0.8710601719197708,
+          "false_positive_rate": 0.050594283766177264
+        }
+      }
+    },
+    "lightgbm_temporal_unweighted": {
+      "observations": 2327260,
+      "positives": 1317,
+      "prevalence": 0.0005659015322740047,
+      "precision": 0.0012135054597675104,
+      "recall": 0.914958238420653,
+      "f1": 0.0024237962482450107,
+      "average_precision": 0.05883725675686095,
+      "roc_auc": 0.8963563254031028,
+      "false_positive_rate": 0.4264016788029629,
+      "false_alarms_per_1000_eligible_drive_days": 426.1603774395641,
+      "threshold_reused_from_q1_validation": 0.00027564553410950796,
+      "tp": 1205,
+      "fp": 991786,
+      "tn": 1334157,
+      "fn": 112,
+      "unique_failing_drives_with_eligible_positives": 208,
+      "unique_failing_drives_detected": 197,
+      "drive_event_recall": 0.9471153846153846,
+      "by_drive_model": {
+        "ST12000NM0008": {
+          "tp": 895,
+          "fp": 938809,
+          "tn": 548225,
+          "fn": 73,
+          "precision": 0.0009524275729378613,
+          "recall": 0.9245867768595041,
+          "false_positive_rate": 0.6313298821681279
+        },
+        "ST14000NM001G": {
+          "tp": 310,
+          "fp": 52977,
+          "tn": 785932,
+          "fn": 39,
+          "precision": 0.005817554000037532,
+          "recall": 0.8882521489971347,
+          "false_positive_rate": 0.06314987680427794
+        }
+      }
+    },
+    "lightgbm_temporal_weighted": {
+      "observations": 2327260,
+      "positives": 1317,
+      "prevalence": 0.0005659015322740047,
+      "precision": 0.0007435224582667089,
+      "recall": 0.9582384206529992,
+      "f1": 0.0014858919737696502,
+      "average_precision": 0.04356403686314901,
+      "roc_auc": 0.8598879977919887,
+      "false_positive_rate": 0.729194137603544,
+      "false_alarms_per_1000_eligible_drive_days": 728.781485523749,
+      "threshold_reused_from_q1_validation": 0.00014004480839462674,
+      "tp": 1262,
+      "fp": 1696064,
+      "tn": 629879,
+      "fn": 55,
+      "unique_failing_drives_with_eligible_positives": 208,
+      "unique_failing_drives_detected": 203,
+      "drive_event_recall": 0.9759615384615384,
+      "by_drive_model": {
+        "ST12000NM0008": {
+          "tp": 930,
+          "fp": 1186294,
+          "tn": 300740,
+          "fn": 38,
+          "precision": 0.0007833399594347824,
+          "recall": 0.9607438016528925,
+          "false_positive_rate": 0.7977584910634189
+        },
+        "ST14000NM001G": {
+          "tp": 332,
+          "fp": 509770,
+          "tn": 329139,
+          "fn": 17,
+          "precision": 0.0006508502221124402,
+          "recall": 0.9512893982808023,
+          "false_positive_rate": 0.6076582799803077
+        }
+      }
+    }
+  }
+}

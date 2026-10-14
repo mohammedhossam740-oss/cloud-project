@@ -1,0 +1,22 @@
+digraph AWS {
+ graph [rankdir=LR, bgcolor="white", fontname="Helvetica", fontsize=14, pad=".22", nodesep=".45", ranksep=".57", labelloc=t, label="AWS cloud workflow · 7-day HDD failure prediction"];
+ node [fontname="Helvetica", fontsize=12, shape=box, style="rounded,filled", fillcolor="#EDF6FF", color="#5481A4", penwidth=1.3, margin="0.18,0.18"];
+ edge [fontname="Helvetica", fontsize=9, color="#64798B", arrowsize=.75];
+ data [label="Backblaze\nDaily SMART ZIP", fillcolor="#EEF8EE", color="#719869"];
+ s3raw [label="Amazon S3\nOriginal ZIP", fillcolor="#E8F3E5", color="#558D4E"];
+ prepare [label="EC2 CPU instance\nDaily ingest → SMART history\n7-day labels → time splits"];
+ learn [label="EC2 CPU instance\nLogistic vs. LightGBM\nValidation threshold → test"];
+ s3out [label="Amazon S3\nModels, metrics\nplots + logs", fillcolor="#E8F3E5", color="#558D4E"];
+ data -> s3raw [label="acquire + store"];
+ s3raw -> prepare [label="S3 read"];
+ prepare -> learn [label="features"];
+ learn -> s3out [label="S3 upload"];
+ iam [label="IAM EC2 role\nS3 least privilege", fillcolor="#FFF1E4", color="#CD965F"];
+ ebs [label="EBS volume\nEC2 scratch disk", fillcolor="#FFF1E4", color="#CD965F"];
+ cw [label="CloudWatch\nlogs + metrics", fillcolor="#FFF1E4", color="#CD965F"];
+ {rank=same; prepare; iam; ebs;}
+ {rank=same; learn; cw;}
+ iam -> prepare [style=dashed, arrowhead=none, constraint=false];
+ ebs -> prepare [style=dashed, arrowhead=none, constraint=false];
+ cw -> learn [style=dashed, arrowhead=none, constraint=false];
+}

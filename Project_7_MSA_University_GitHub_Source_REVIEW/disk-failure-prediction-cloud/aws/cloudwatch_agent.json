@@ -1,0 +1,24 @@
+{
+  "agent": {"metrics_collection_interval": 60, "run_as_user": "root"},
+  "logs": {
+    "logs_collected": {
+      "files": {
+        "collect_list": [
+          {
+            "file_path": "/home/ubuntu/disk-failure-prediction-cloud/cloud_experiment.log",
+            "log_group_name": "/disk-failure/experiments",
+            "log_stream_name": "{instance_id}",
+            "timezone": "UTC"
+          }
+        ]
+      }
+    }
+  },
+  "metrics": {
+    "namespace": "DiskFailureCourseProject",
+    "metrics_collected": {
+      "mem": {"measurement": ["mem_used_percent"]},
+      "disk": {"measurement": ["used_percent"], "resources": ["/"]}
+    }
+  }
+}

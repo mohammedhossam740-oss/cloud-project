@@ -1,0 +1,27 @@
+flowchart LR
+  Backblaze[Backblaze public daily HDD SMART archive] -->|Download archive on EC2| EC2
+  subgraph AWS[Amazon Web Services account / region]
+    subgraph S3[Amazon S3 project bucket]
+      RAW[(raw/ - original ZIP)]
+      PROC[(processed/ - parquet features)]
+      RESULTS[(results/ - metrics, figures, models)]
+    end
+    IAM[[IAM instance role / least privilege]]
+    subgraph EC2[EC2 Ubuntu CPU instance]
+      LOAD[Read selected drives; validate, order, deduplicate]
+      FEATURES[Past-only temporal SMART feature engineering]
+      LABEL[Confirmed 7-day labels and censor filtering]
+      SPLIT[Chronological split + 7-day embargo]
+      MODELS[Baseline logistic regression + weighted LightGBM]
+      EVAL[Threshold selected on validation; untouched test metrics]
+      LOAD --> FEATURES --> LABEL --> SPLIT --> MODELS --> EVAL
+    end
+    CW[(CloudWatch logs, CPU, optional memory)]
+  end
+  EC2 -->|Upload raw ZIP| RAW
+  RAW -->|Retrieve ZIP| LOAD
+  LABEL -->|Upload curated features| PROC
+  EVAL -->|Upload models + plots + tables| RESULTS
+  IAM -. authorizes .-> RAW
+  IAM -. authorizes .-> RESULTS
+  EC2 -. monitor .-> CW
